@@ -1,0 +1,25 @@
+﻿<Window x:Class="ReactionTimeGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReactionTimeGame"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- Utasítások -->
+            <TextBlock x:Name="InstructionText" Text="Nyomd meg az Új Játék gombot!" 
+                       FontSize="16" TextAlignment="Center" Margin="10"/>
+
+            <!-- Reakció gomb -->
+            <Button x:Name="ReactionButton" Content="KATTINTS MOST!" 
+                    FontSize="18" Width="200" Height="50"
+                    Visibility="Hidden" Click="ReactionButton_Click"/>
+
+            <!-- Új játék gomb -->
+            <Button Content="Új játék" Width="150" Height="40" 
+                    Margin="20" Click="StartGame"/>
+        </StackPanel>
+    </Grid>
+</Window>
