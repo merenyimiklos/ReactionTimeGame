@@ -21,6 +21,6 @@
             <Button Content="Új játék" Width="150" Height="40" 
                     Margin="20" Click="StartGame"/>
         </StackPanel>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="360,308,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Új gomb haha" HorizontalAlignment="Left" Margin="360,308,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
