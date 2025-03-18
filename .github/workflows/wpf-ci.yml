@@ -1,28 +1,28 @@
-name: WPF CI
+name: WPF CI/CD with Auto-Release
 
 on:
   push:
     branches: [ "master" ]
+    tags: ['v*.*.*']
   pull_request:
     branches: [ "master" ]
 
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'  # Ellenőrizd a használt .NET verziót, módosítsd szükség szerint
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: dotnet restore ReactionTimeGame.sln
 
       - name: Build
-        run: dotnet build ReactionTimeGame.sln --configuration Release --no-restore
+        run: dotnet build ReactionTimeGame.sln -c Release --no-restore
 
       - name: Publish
         run: dotnet publish ReactionTimeGame.sln -c Release -o ./publish --no-restore
@@ -32,3 +32,25 @@ jobs:
         with:
           name: ReactionTimeGame-WPF
           path: ./publish
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ReactionTimeGame-WPF
+          path: ./publish
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          generate_release_notes: true
+          files: |
+            ./publish/**
