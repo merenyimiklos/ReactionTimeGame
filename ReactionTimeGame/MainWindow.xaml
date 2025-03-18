@@ -22,5 +22,8 @@
                     Margin="20" Click="StartGame"/>
         </StackPanel>
         <Button x:Name="button" Content="Új gomb haha" HorizontalAlignment="Left" Margin="360,308,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0,78,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="122,87,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="584,87,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
