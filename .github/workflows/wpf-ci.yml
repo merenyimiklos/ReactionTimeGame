@@ -1,0 +1,34 @@
+name: WPF CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'  # Ellenőrizd a használt .NET verziót, módosítsd szükség szerint
+
+      - name: Restore dependencies
+        run: dotnet restore ReactionTimeGame.sln
+
+      - name: Build
+        run: dotnet build ReactionTimeGame.sln --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish ReactionTimeGame.sln -c Release -o ./publish --no-restore
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ReactionTimeGame-WPF
+          path: ./publish
