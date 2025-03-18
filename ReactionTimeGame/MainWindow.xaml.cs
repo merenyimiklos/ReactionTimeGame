@@ -89,7 +89,7 @@ namespace ReactionTimeGame
         // Stopper folyamatos frissítése (ezredmásodperc pontossággal)
         private void StopwatchTimer_Tick(object sender, EventArgs e)
         {
-            TimeSpan elapsed = DateTime.Now - ReactionStartTime;
+            TimeSpan elapsedd = DateTime.Now - ReactionStartTime;
             //TotalMilliseconds: a TimeSpan osztály egyik tulajdonsága, ami a teljes időtartamot ezredmásodpercekben adja vissza
             //TotalMilliseconds:F0 -> a teljes időtartamot ezredmásodpercekben adja vissza, egész számra kerekítve
             InstructionText.Text = $"Idő: {elapsed.TotalMilliseconds:F0} ms";
