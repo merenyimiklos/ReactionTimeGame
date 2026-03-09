@@ -5,24 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReactionTimeGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Reakcióidő Játék" Height="450" Width="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1E1E2E" Offset="0"/>
+                <GradientStop Color="#313244" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <!-- Utasítások -->
-            <TextBlock x:Name="InstructionText" Text="Nyomd meg az Új Játék gombot!" 
-                       FontSize="16" TextAlignment="Center" Margin="10"/>
+            <TextBlock x:Name="InstructionText" Text="Nyomd meg az Új Játék gombot!"
+                       FontSize="18" TextAlignment="Center"
+                       Foreground="#CDD6F4"
+                       Margin="10,0,10,30"/>
 
             <!-- Reakció gomb -->
-            <Button x:Name="ReactionButton" Content="KATTINTS MOST!" 
-                    FontSize="18" Width="200" Height="50"
+            <Button x:Name="ReactionButton" Content="KATTINTS MOST!"
+                    FontSize="20" Width="220" Height="60"
+                    Margin="0,0,0,20"
+                    Background="#A6E3A1" Foreground="#1E1E2E"
+                    FontWeight="Bold" BorderThickness="0"
+                    Cursor="Hand"
                     Visibility="Hidden" Click="ReactionButton_Click"/>
 
             <!-- Új játék gomb -->
-            <Button Content="Új játék" Width="150" Height="40" 
-                    Margin="20" Click="StartGame"/>
+            <Button Content="▶  Új játék"
+                    Width="200" Height="46" FontSize="15"
+                    Margin="0,0,0,12"
+                    Background="#89B4FA" Foreground="#1E1E2E"
+                    FontWeight="Bold" BorderThickness="0"
+                    Cursor="Hand"
+                    Click="StartGame"/>
+
+            <!-- Vissza a menübe gomb -->
+            <Button Content="← Vissza a menübe"
+                    Width="200" Height="46" FontSize="15"
+                    Background="#45475A" Foreground="#CDD6F4"
+                    FontWeight="Bold" BorderThickness="0"
+                    Cursor="Hand"
+                    Click="BackToMenu_Click"/>
         </StackPanel>
-        <Button x:Name="button" Content="Új gomb haha" HorizontalAlignment="Left" Margin="360,308,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0,78,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="584,87,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

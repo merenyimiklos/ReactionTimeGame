@@ -21,10 +21,12 @@ namespace ReactionTimeGame
         private DispatcherTimer StopwatchTimer; // Stopper a reakcióidő méréséhez
         private DateTime ReactionStartTime;     // A gomb megjelenési időpontja
         private bool GameActive = false;        // A játék állapota
+        private readonly MenuWindow? _menuWindow; // Hivatkozás a menüre
 
-        public MainWindow()
+        public MainWindow(MenuWindow? menuWindow = null)
         {
             InitializeComponent();
+            _menuWindow = menuWindow;
 
             // Timer inicializálása
             ReactionTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
@@ -78,6 +80,9 @@ namespace ReactionTimeGame
             // Reakcióidő kiszámítása
             TimeSpan reactionTime = DateTime.Now - ReactionStartTime;
 
+            // Eredmény mentése
+            ScoreManager.AddScore(reactionTime.TotalSeconds);
+
             // Másodperc formátumban megjelenítés
             //formázás magyarázat --> F3: 3 tizedesjegyig, F0: egész szám, s -> másodperc
             //TotalSeconds: a TimeSpan osztály egyik tulajdonsága, ami a teljes időtartamot másodpercekben adja vissza
@@ -93,6 +98,18 @@ namespace ReactionTimeGame
             //TotalMilliseconds: a TimeSpan osztály egyik tulajdonsága, ami a teljes időtartamot ezredmásodpercekben adja vissza
             //TotalMilliseconds:F0 -> a teljes időtartamot ezredmásodpercekben adja vissza, egész számra kerekítve
             InstructionText.Text = $"Idő: {elapsed.TotalMilliseconds:F0} ms";
+        }
+
+        // Vissza a főmenübe
+        private void BackToMenu_Click(object sender, RoutedEventArgs e)
+        {
+            // Futó időzítők leállítása
+            ReactionTimer.Stop();
+            StopwatchTimer.Stop();
+            GameActive = false;
+
+            _menuWindow?.Show();
+            Close();
         }
     }
 }
